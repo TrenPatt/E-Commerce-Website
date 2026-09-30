@@ -1,0 +1,278 @@
+/* ==========================================================
+   E-Commerce Website Stylesheet
+   ----------------------------------------------------------
+   This stylesheet controls the overall look and layout of the
+   site. It uses CSS variables so you can quickly change the
+   color palette, spacing, and typography in one place.
+
+   HOW TO CUSTOMIZE THIS FILE:
+   - Change colors by editing the variables in :root
+   - Change spacing by editing --content-width, --nav-height,
+     and the padding/margin values below
+   - Change responsiveness by adjusting the media query widths
+   - Add new page sections using the helper classes near the end
+
+   TIP:
+   If you want a more premium, dark, or minimal look, update only
+   the variables and a few color references below.
+   ========================================================== */
+
+:root {
+    /* ---------------------------
+       Brand colors
+       Change these values to match your company style.
+       Example: swap blue for green, orange, or black.
+       --------------------------- */
+    --primary: #948e57;          /* Main dark blue used for header and strong accents */
+    --primary-dark: #726a3c;     /* Darker version for hover or pressed states */
+    --primary-light: #e2e076;    /* Slightly lighter shade for hover links */
+    --accent: #63583b;           /* Selected/active navigation color */
+
+    /* ---------------------------
+       Neutral colors
+       These affect text, background, and borders.
+       --------------------------- */
+    --page-bg: #f4f6f8;          /* Overall page background color */
+    --surface: #ffffff;          /* Main content card background */
+    --text: #1f2933;             /* Main text color */
+    --muted: #5f6c7b;            /* Secondary text / subtitles */
+    --border: #dfe7ef;           /* Borders and dividers */
+    --shadow: rgba(15, 41, 71, 0.15); /* Soft shadow for cards and headers */
+
+    /* ---------------------------
+       Layout values
+       Adjust these for page width and spacing.
+       --------------------------- */
+    --content-width: 1200px;     /* Maximum width of main content */
+    --nav-height: 80px;          /* Header height on desktop */
+    --radius: 12px;              /* Corner radius for cards and buttons */
+    --transition-speed: 0.2s;    /* Speed for hover transitions */
+}
+
+/* ==========================================================
+   Reset and base styles
+   These rules make the page look consistent across browsers.
+   ========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+main {
+    width: min(var(--content-width), calc(100% - 32px));
+    margin: 40px auto;
+    padding: 32px 28px;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+main h1,
+main h2,
+main h3 {
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+main p {
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+/* ==========================================================
+   Header styles
+   The header is the main navigation bar across the website.
+   It is loaded from header.html, so these styles affect every page.
+   ========================================================== */
+
+header {
+    width: 100%;
+    min-height: var(--nav-height);
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* ----------------------------------------------------------
+   Left side of the header
+   This section contains the logo and brand name.
+   ---------------------------------------------------------- */
+
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.left-header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.brand-text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ==========================================================
+   Navigation styles
+   This controls each nav link such as Home, About Us, Blog, Products.
+   You can change the look by editing link padding, background color,
+   font size, or hover state below.
+   ========================================================== */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 18px;
+    border-radius: 6px;
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+}
+
+nav a:hover {
+    background-color: var(--primary-light);
+}
+
+nav a:active {
+    transform: translateY(1px);
+}
+
+/* Use this class on a nav item when it is the current page.
+   In HTML, you would usually add class="active" to the current nav link.
+   Example: <a href="products.html" class="active">Products</a> */
+nav a.active {
+    background-color: var(--accent);
+}
+
+/* ==========================================================
+   Utility classes for future page sections
+   These are optional helper classes that make it easier to add
+   consistent card layouts and headings across the site.
+   ========================================================== */
+
+.page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 18px;
+    color: var(--primary);
+}
+
+.section {
+    margin-top: 28px;
+    padding: 24px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================
+   Responsive design
+   These media queries make the layout adapt on smaller screens.
+   If you want a different mobile breakpoint, change 700px below.
+   ========================================================== */
+
+@media (max-width: 700px) {
+    header {
+        height: auto;
+        min-height: var(--nav-height);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .left-header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .logo {
+        height: 42px;
+    }
+
+    main {
+        width: min(var(--content-width), calc(100% - 20px));
+        padding: 22px 18px;
+        margin-top: 20px;
+    }
+}
+
+/* ==========================================================
+   Notes for editing
+   ----------------------------------------------------------
+   To customize the site quickly:
+   1. Change --primary to alter the main brand color.
+   2. Change --page-bg to make the page lighter or darker.
+   3. Update nav a hover styles to create a new hover effect.
+   4. Adjust the mobile media query width to target a different
+      device size.
+   5. Add new utility classes for product cards, pricing sections,
+      or hero banners without changing the header rules.
+   ========================================================== */
