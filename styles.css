@@ -1,278 +1,486 @@
-/* ==========================================================
-   E-Commerce Website Stylesheet
-   ----------------------------------------------------------
-   This stylesheet controls the overall look and layout of the
-   site. It uses CSS variables so you can quickly change the
-   color palette, spacing, and typography in one place.
-
-   HOW TO CUSTOMIZE THIS FILE:
-   - Change colors by editing the variables in :root
-   - Change spacing by editing --content-width, --nav-height,
-     and the padding/margin values below
-   - Change responsiveness by adjusting the media query widths
-   - Add new page sections using the helper classes near the end
-
-   TIP:
-   If you want a more premium, dark, or minimal look, update only
-   the variables and a few color references below.
-   ========================================================== */
-
 :root {
-    /* ---------------------------
-       Brand colors
-       Change these values to match your company style.
-       Example: swap blue for green, orange, or black.
-       --------------------------- */
-    --primary: #948e57;          /* Main dark blue used for header and strong accents */
-    --primary-dark: #726a3c;     /* Darker version for hover or pressed states */
-    --primary-light: #e2e076;    /* Slightly lighter shade for hover links */
-    --accent: #63583b;           /* Selected/active navigation color */
-
-    /* ---------------------------
-       Neutral colors
-       These affect text, background, and borders.
-       --------------------------- */
-    --page-bg: #f4f6f8;          /* Overall page background color */
-    --surface: #ffffff;          /* Main content card background */
-    --text: #1f2933;             /* Main text color */
-    --muted: #5f6c7b;            /* Secondary text / subtitles */
-    --border: #dfe7ef;           /* Borders and dividers */
-    --shadow: rgba(15, 41, 71, 0.15); /* Soft shadow for cards and headers */
-
-    /* ---------------------------
-       Layout values
-       Adjust these for page width and spacing.
-       --------------------------- */
-    --content-width: 1200px;     /* Maximum width of main content */
-    --nav-height: 80px;          /* Header height on desktop */
-    --radius: 12px;              /* Corner radius for cards and buttons */
-    --transition-speed: 0.2s;    /* Speed for hover transitions */
+  --primary: #2f6f4f;
+  --primary-dark: #214d3a;
+  --primary-light: #d7eedf;
+  --accent: #3e865d;
+  --page-bg: #f4f7f5;
+  --surface: #ffffff;
+  --text: #1d2b24;
+  --muted: #5a6e65;
+  --border: #dfe9e2;
+  --shadow: rgba(24, 42, 34, 0.12);
+  --content-width: 1200px;
+  --nav-height: 80px;
+  --radius: 14px;
+  --transition-speed: 0.2s;
 }
 
-/* ==========================================================
-   Reset and base styles
-   These rules make the page look consistent across browsers.
-   ========================================================== */
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--page-bg);
-    color: var(--text);
-    line-height: 1.6;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f7faf7 0%, #eef4f1 100%);
+  color: var(--text);
+  line-height: 1.6;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  display: block;
+  max-width: 100%;
 }
 
 main {
-    width: min(var(--content-width), calc(100% - 32px));
-    margin: 40px auto;
-    padding: 32px 28px;
-    background-color: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: 0 8px 24px var(--shadow);
+  width: min(var(--content-width), calc(100% - 32px));
+  margin: 40px auto;
+  padding: 32px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px var(--shadow);
 }
 
 main h1,
 main h2,
 main h3 {
-    color: var(--primary);
-    margin-bottom: 12px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
-main p {
-    color: var(--text);
-    margin-bottom: 16px;
+main p,
+main li {
+  color: var(--text);
+  margin-bottom: 14px;
 }
 
-/* ==========================================================
-   Header styles
-   The header is the main navigation bar across the website.
-   It is loaded from header.html, so these styles affect every page.
-   ========================================================== */
-
-header {
-    width: 100%;
-    min-height: var(--nav-height);
-    background-color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    box-shadow: 0 2px 6px var(--shadow);
+.page-shell {
+  display: grid;
+  gap: 28px;
 }
-
-/* ----------------------------------------------------------
-   Left side of the header
-   This section contains the logo and brand name.
-   ---------------------------------------------------------- */
-
-.left-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.left-header a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.logo {
-    height: 50px;
-    width: auto;
-    display: block;
-}
-
-.brand-text {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-/* ==========================================================
-   Navigation styles
-   This controls each nav link such as Home, About Us, Blog, Products.
-   You can change the look by editing link padding, background color,
-   font size, or hover state below.
-   ========================================================== */
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 12px 18px;
-    border-radius: 6px;
-    transition: background-color var(--transition-speed) ease,
-                color var(--transition-speed) ease,
-                transform var(--transition-speed) ease;
-}
-
-nav a:hover {
-    background-color: var(--primary-light);
-}
-
-nav a:active {
-    transform: translateY(1px);
-}
-
-/* Use this class on a nav item when it is the current page.
-   In HTML, you would usually add class="active" to the current nav link.
-   Example: <a href="products.html" class="active">Products</a> */
-nav a.active {
-    background-color: var(--accent);
-}
-
-/* ==========================================================
-   Utility classes for future page sections
-   These are optional helper classes that make it easier to add
-   consistent card layouts and headings across the site.
-   ========================================================== */
 
 .page-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 18px;
-    color: var(--primary);
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  margin-bottom: 8px;
 }
 
 .section {
-    margin-top: 28px;
-    padding: 24px;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+  margin-top: 12px;
+  padding: 24px;
+  background: #f9fbfa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+.card,
+.product-card,
+.blog-card,
+.value-card,
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 8px 18px rgba(28, 52, 42, 0.04);
 }
 
-/* ==========================================================
-   Responsive design
-   These media queries make the layout adapt on smaller screens.
-   If you want a different mobile breakpoint, change 700px below.
-   ========================================================== */
+header {
+  width: 100%;
+  min-height: var(--nav-height);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-badge {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.brand-text {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-radius: 8px;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+nav a:hover {
+  background: var(--primary-light);
+  color: var(--text);
+}
+
+nav a.active {
+  background: var(--accent);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+  padding: 24px 0 0;
+}
+
+.hero-copy {
+  padding-right: 10px;
+}
+
+.hero-copy p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.button,
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.button:hover,
+button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary,
+.cookie-banner button[data-action='accept'] {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.button.secondary,
+.cookie-banner button[data-action='decline'] {
+  background: #edf3ee;
+  color: var(--text);
+}
+
+.hero-panel {
+  background: linear-gradient(135deg, #edf8ef 0%, #e7f0ec 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.metric {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+}
+
+.metric strong {
+  display: block;
+  font-size: 1.7rem;
+  color: var(--primary);
+}
+
+.feature-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.feature-list li::before {
+  content: '✓';
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e8f5eb;
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.site-footer {
+  background: #1d2b24;
+  color: #eaf3ee;
+  margin-top: 48px;
+  padding: 36px 0 20px;
+}
+
+.footer-content {
+  width: min(var(--content-width), calc(100% - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr;
+  gap: 24px;
+}
+
+.site-footer h3,
+.site-footer h4 {
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.site-footer p,
+.site-footer a {
+  color: #dfece4;
+  font-size: 0.96rem;
+}
+
+.site-footer a {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-bottom {
+  width: min(var(--content-width), calc(100% - 32px));
+  margin: 26px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #dfece4;
+  font-size: 0.9rem;
+}
+
+.product-grid,
+.value-grid,
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.product-card h3,
+.value-card h3,
+.blog-card h3 {
+  margin-bottom: 10px;
+}
+
+.product-tag {
+  display: inline-block;
+  background: #eaf6ee;
+  color: var(--primary);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  margin-bottom: 12px;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 12px;
+}
+
+.product-card ul,
+.privacy-list,
+.blog-article ul {
+  margin: 12px 0 0 18px;
+  color: var(--muted);
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.blog-article {
+  background: #fbfdfc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.quote-box {
+  margin: 22px 0;
+  padding: 20px 22px;
+  background: #edf7f0;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.privacy-card {
+  padding: 18px;
+  background: #f9fbfa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 36px rgba(24, 42, 34, 0.18);
+  padding: 16px 18px;
+}
+
+.cookie-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.cookie-content p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 @media (max-width: 700px) {
-    header {
-        height: auto;
-        min-height: var(--nav-height);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 15px 20px;
-        gap: 15px;
-    }
+  header {
+    min-height: var(--nav-height);
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px 20px;
+    gap: 15px;
+  }
 
-    .left-header {
-        justify-content: center;
-    }
+  .left-header {
+    justify-content: center;
+  }
 
-    nav {
-        justify-content: center;
-    }
+  nav {
+    justify-content: center;
+  }
 
-    nav a {
-        font-size: 14px;
-        padding: 10px 14px;
-    }
+  nav a {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
 
-    .logo {
-        height: 42px;
-    }
+  main {
+    width: min(var(--content-width), calc(100% - 20px));
+    padding: 22px 18px;
+    margin-top: 20px;
+  }
 
-    main {
-        width: min(var(--content-width), calc(100% - 20px));
-        padding: 22px 18px;
-        margin-top: 20px;
-    }
+  .hero,
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
 }
-
-/* ==========================================================
-   Notes for editing
-   ----------------------------------------------------------
-   To customize the site quickly:
-   1. Change --primary to alter the main brand color.
-   2. Change --page-bg to make the page lighter or darker.
-   3. Update nav a hover styles to create a new hover effect.
-   4. Adjust the mobile media query width to target a different
-      device size.
-   5. Add new utility classes for product cards, pricing sections,
-      or hero banners without changing the header rules.
-   ========================================================== */
